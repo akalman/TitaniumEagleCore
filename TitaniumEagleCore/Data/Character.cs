@@ -1,31 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
-namespace TitaniumEagleCore
+namespace TitaniumEagleCore.Data
 {
     public class Character
     {
-        internal Character()
-        {
-            Equipment = new List<Equipment>();
-            ActionBar = new List<Action>();
-        }
+        internal Character() { }
 
         public static Character Empty = new Character
         {
-            Id = Guid.Empty,
-            Equipment = new List<Equipment>().AsReadOnly(),
-            ActionBar = new List<Action>().AsReadOnly()
+            Id = Guid.Empty
         };
 
         public Guid Id { get; internal set; }
-        public IList<Equipment> Equipment { get; internal set; }
-        public IList<Action> ActionBar { get; internal set; }
-        public int CurrentHealth { get; internal set; }
-
-        public int Attack { get { return 50; } }
-        public int Defense { get { return 30; } }
-        public int MaxHealth { get { return 700; } }
+        public Guid PlayerId { get; internal set; }
     }
 
     public static class CharacterRepository
@@ -42,11 +32,17 @@ namespace TitaniumEagleCore
             return Character.Empty;
         }
 
-        public static Character Create()
+        public static ReadOnlyCollection<Character> Get()
+        {
+            return new ReadOnlyCollection<Character>(Characters.Values.ToList());
+        }
+
+        public static Character Create(Player player)
         {
             var character = new Character
             {
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                PlayerId = player.Id
             };
 
             Characters[character.Id] = character;

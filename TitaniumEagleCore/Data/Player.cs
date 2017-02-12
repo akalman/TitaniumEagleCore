@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
-namespace TitaniumEagleCore
+namespace TitaniumEagleCore.Data
 {
     public class Player
     {
@@ -9,12 +11,10 @@ namespace TitaniumEagleCore
 
         public static Player Empty = new Player
         {
-            Id = Guid.Empty,
-            Character = Character.Empty
+            Id = Guid.Empty
         };
 
         public Guid Id { get; internal set; }
-        public Character Character { get; internal set; }
     }
      
     public static class PlayerRepository
@@ -29,6 +29,11 @@ namespace TitaniumEagleCore
             }
 
             return Player.Empty;
+        }
+
+        public static ReadOnlyCollection<Player> Get()
+        {
+            return new ReadOnlyCollection<Player>(Players.Values.ToList());
         }
 
         public static Player Create()
