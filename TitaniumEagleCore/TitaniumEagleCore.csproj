@@ -39,9 +39,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Player.cs" />
+    <Compile Include="Data\InventorySlot.cs" />
+    <Compile Include="Messaging\IMessage.cs" />
+    <Compile Include="Messaging\ISubscrber.cs" />
+    <Compile Include="Messaging\MessagePublisher.cs" />
+    <Compile Include="Messaging\Messages\PlayerSelectedCharacterMessage.cs" />
+    <Compile Include="Messaging\Messages\PlayerSelectedEquipmentMessage.cs" />
+    <Compile Include="Messaging\Subscribers\PlayerSelectedEquipmentMessageSubscriber.cs" />
+    <Compile Include="Messaging\Subscribers\PlayerSelectedCharacterMessageSubscriber.cs" />
+    <Compile Include="State\CharacterInstance.cs" />
+    <Compile Include="State\LevelState.cs" />
+    <Compile Include="Types\Action.cs" />
+    <Compile Include="Data\Character.cs" />
+    <Compile Include="Types\Instances\Armors.cs" />
+    <Compile Include="Types\Instances\Weapons.cs" />
+    <Compile Include="Types\Item.cs" />
+    <Compile Include="DevScripts\TestDataSeeder.cs" />
+    <Compile Include="Data\Equipment.cs" />
+    <Compile Include="Data\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\ItemType.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
