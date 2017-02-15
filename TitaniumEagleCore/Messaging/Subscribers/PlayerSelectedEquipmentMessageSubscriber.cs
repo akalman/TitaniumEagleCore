@@ -3,14 +3,29 @@ using TitaniumEagleCore.State;
 
 namespace TitaniumEagleCore.Messaging.Subscribers
 {
-    internal class PlayerSelectedEquipmentMessageSubscriber : ISubscrber<PlayerSelectedEquipmentMessage>
+    internal class PlayerSelectedEquipmentMessageSubscriber : ISubscriber<PlayerSelectedEquipmentMessage>
     {
-        public void Process(PlayerSelectedEquipmentMessage message)
+        public GameState Process(GameState state, PlayerSelectedEquipmentMessage message)
         {
-            LevelState.PlayerOne.MainHand = message.MainHand;
-            LevelState.PlayerOne.OffHand = message.OffHand;
-            LevelState.PlayerOne.Armor = message.Armor;
-            LevelState.PlayerOne.Accessory = message.Accessory;
+            return new GameState
+            {
+                LevelSelectState = state.LevelSelectState,
+                LevelState = new LevelState
+                {
+                    PlayerOne = new CharacterInstance
+                    {
+                        Player = state.LevelState.PlayerOne.Player,
+                        Character = state.LevelState.PlayerOne.Character,
+                        MainHand = message.MainHand,
+                        OffHand = message.OffHand,
+                        Armor = message.Armor,
+                        Accessory = message.Accessory
+                    },
+                    PlayerTwo = state.LevelState.PlayerTwo,
+                    PlayerThree = state.LevelState.PlayerThree,
+                    PlayerFour = state.LevelState.PlayerFour
+                }
+            };
         }
     }
 }

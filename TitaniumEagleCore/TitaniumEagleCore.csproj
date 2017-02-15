@@ -41,13 +41,17 @@
   <ItemGroup>
     <Compile Include="Data\InventorySlot.cs" />
     <Compile Include="Messaging\IMessage.cs" />
-    <Compile Include="Messaging\ISubscrber.cs" />
+    <Compile Include="Messaging\ISubscriber.cs" />
     <Compile Include="Messaging\MessagePublisher.cs" />
     <Compile Include="Messaging\Messages\PlayerSelectedCharacterMessage.cs" />
     <Compile Include="Messaging\Messages\PlayerSelectedEquipmentMessage.cs" />
     <Compile Include="Messaging\Subscribers\PlayerSelectedEquipmentMessageSubscriber.cs" />
     <Compile Include="Messaging\Subscribers\PlayerSelectedCharacterMessageSubscriber.cs" />
     <Compile Include="State\CharacterInstance.cs" />
+    <Compile Include="Context\GameContext.cs" />
+    <Compile Include="Context\Messaging.cs" />
+    <Compile Include="State\GameState.cs" />
+    <Compile Include="State\LevelSelectState.cs" />
     <Compile Include="State\LevelState.cs" />
     <Compile Include="Types\Action.cs" />
     <Compile Include="Data\Character.cs" />
