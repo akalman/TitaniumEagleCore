@@ -1,10 +1,18 @@
 ﻿namespace TitaniumEagleCore.State
 {
-    public static class LevelState
+    public class LevelState
     {
-        public static CharacterInstance PlayerOne { get; internal set; }
-        public static CharacterInstance PlayerTwo { get; internal set; }
-        public static CharacterInstance PlayerThree { get; internal set; }
-        public static CharacterInstance PlayerFour { get; internal set; }
+        public CharacterInstance PlayerOne { get; internal set; }
+        public CharacterInstance PlayerTwo { get; internal set; }
+        public CharacterInstance PlayerThree { get; internal set; }
+        public CharacterInstance PlayerFour { get; internal set; }
+
+        public static LevelState Empty = new LevelState
+        {
+            PlayerOne = CharacterInstance.Empty,
+            PlayerTwo = CharacterInstance.Empty,
+            PlayerThree = CharacterInstance.Empty,
+            PlayerFour = CharacterInstance.Empty
+        };
     }
 }

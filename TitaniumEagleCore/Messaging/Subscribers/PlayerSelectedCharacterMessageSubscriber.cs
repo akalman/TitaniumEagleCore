@@ -1,18 +1,31 @@
-﻿using System;
-using TitaniumEagleCore.Data;
+﻿using TitaniumEagleCore.Data;
 using TitaniumEagleCore.Messaging.Messages;
 using TitaniumEagleCore.State;
 
 namespace TitaniumEagleCore.Messaging.Subscribers
 {
-    internal class PlayerSelectedCharacterMessageSubscriber : ISubscrber<PlayerSelectedCharacterMessage>
+    internal class PlayerSelectedCharacterMessageSubscriber : ISubscriber<PlayerSelectedCharacterMessage>
     {
-        public void Process(PlayerSelectedCharacterMessage message)
+        public GameState Process(GameState state, PlayerSelectedCharacterMessage message)
         {
-            LevelState.PlayerOne = new CharacterInstance
+            return new GameState
             {
-                Player = PlayerRepository.Get(message.PlayerId),
-                Character = CharacterRepository.Get(message.CharacterId)
+                LevelSelectState = state.LevelSelectState,
+                LevelState = new LevelState
+                {
+                    PlayerOne = new CharacterInstance
+                    {
+                        Player = PlayerRepository.Get(message.PlayerId),
+                        Character = CharacterRepository.Get(message.CharacterId),
+                        MainHand = InventorySlot.Empty,
+                        OffHand = InventorySlot.Empty,
+                        Armor = InventorySlot.Empty,
+                        Accessory = InventorySlot.Empty
+                    },
+                    PlayerTwo = state.LevelState.PlayerTwo,
+                    PlayerThree = state.LevelState.PlayerThree,
+                    PlayerFour = state.LevelState.PlayerFour
+                }
             };
         }
     }
