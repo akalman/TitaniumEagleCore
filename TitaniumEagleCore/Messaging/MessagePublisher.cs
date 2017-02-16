@@ -29,10 +29,10 @@ namespace TitaniumEagleCore.Messaging
             Array.ForEach(subscribers, addToDictionary);
         }
 
-        public void Publish(IMessage message)
+        public void Publish<T>(IMessage<T> message) where T : IMessage<T>
         {
             var subscriber = _subscribers[message.GetType()];
-            var resultState = subscriber.GetType().InvokeMember("Process", BindingFlags.Default, null, subscriber, new object[] { GameContext.State, message }) as GameState;
+            var resultState = ((ISubscriber<T>) subscriber).Process(GameContext.State, (T) message);
             GameContext.State = resultState;
         }
     }

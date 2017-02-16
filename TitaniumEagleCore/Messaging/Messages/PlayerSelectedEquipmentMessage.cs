@@ -2,7 +2,7 @@
 
 namespace TitaniumEagleCore.Messaging.Messages
 {
-    public class PlayerSelectedEquipmentMessage : IMessage
+    public class PlayerSelectedEquipmentMessage : IMessage<PlayerSelectedEquipmentMessage>
     {
         public InventorySlot MainHand { get; set; }
         public InventorySlot OffHand { get; set; }
