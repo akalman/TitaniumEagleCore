@@ -1,4 +1,5 @@
-﻿using TitaniumEagleCore.Data;
+﻿using TitaniumEagleCore.Context;
+using TitaniumEagleCore.Data;
 using TitaniumEagleCore.Types.Instances;
 
 namespace TitaniumEagleCore.DevScripts
@@ -7,13 +8,13 @@ namespace TitaniumEagleCore.DevScripts
     {
         public void Seed()
         {
-            var player1 = PlayerRepository.Create();
+            var player1 = Repositories.Players.Create();
 
-            var character1 = CharacterRepository.Create(player1);
-            var sword1 = EquipmentRepository.Create(Weapons.BasicSword);
-            var character1sword = InventorySlotRepository.Create(character1, sword1);
-            var armor1 = EquipmentRepository.Create(Armors.BasicArmor);
-            var character1armor = InventorySlotRepository.Create(character1, armor1);
+            var character1 = Repositories.Characters.Create(player1);
+            var sword1 = Repositories.Equipments.Create(Weapons.BasicSword);
+            var character1sword = Repositories.InventorySlots.Create(character1, sword1);
+            var armor1 = Repositories.Equipments.Create(Armors.BasicArmor);
+            var character1armor = Repositories.InventorySlots.Create(character1, armor1);
         }
     }
 }

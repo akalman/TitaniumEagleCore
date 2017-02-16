@@ -39,7 +39,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\Repositories.cs" />
     <Compile Include="Data\InventorySlot.cs" />
+    <Compile Include="Data\Repositories\CharacterRepository.cs" />
+    <Compile Include="Data\Repositories\EquipmentRepository.cs" />
+    <Compile Include="Data\Repositories\InventorySlotRepository.cs" />
+    <Compile Include="Data\Repositories\PlayerRepository.cs" />
     <Compile Include="Messaging\IMessage.cs" />
     <Compile Include="Messaging\ISubscriber.cs" />
     <Compile Include="Messaging\MessagePublisher.cs" />
