@@ -1,4 +1,5 @@
-﻿using TitaniumEagleCore.Data;
+﻿using TitaniumEagleCore.Context;
+using TitaniumEagleCore.Data;
 using TitaniumEagleCore.Messaging.Messages;
 using TitaniumEagleCore.State;
 
@@ -15,8 +16,8 @@ namespace TitaniumEagleCore.Messaging.Subscribers
                 {
                     PlayerOne = new CharacterInstance
                     {
-                        Player = PlayerRepository.Get(message.PlayerId),
-                        Character = CharacterRepository.Get(message.CharacterId),
+                        Player = Repositories.Players.Get(message.PlayerId),
+                        Character = Repositories.Characters.Get(message.CharacterId),
                         MainHand = InventorySlot.Empty,
                         OffHand = InventorySlot.Empty,
                         Armor = InventorySlot.Empty,
