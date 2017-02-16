@@ -1,4 +1,4 @@
 ﻿namespace TitaniumEagleCore.Messaging
 {
-    public interface IMessage { }
+    public interface IMessage<T> where T : IMessage<T> { }
 }
